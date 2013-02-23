@@ -31,18 +31,22 @@ class CalendarDateTime extends DataObject
 
 
 	public function getCMSFields() {
-		DateField::set_default_config('showcalendar', true);
-		$f = new FieldList(
-			new DateField('StartDate',_t('CalendarDateTime.STARTDATE','Start date')),
-			new DateField('EndDate',_t('CalendarDateTime.ENDDATE','End date')),
-			new TimeField('StartTime', _t('CalendarDateTime.STARTTIME','Start time')),
-			new TimeField('EndTime', _t('CalendarDateTime.ENDTIME','End time')),
+		$fields = parent::getCMSFields();
+
+		$fields->removeByName('EventID');
+		$fields->addFieldsToTab('Root.Main', array(
+			$start = new DateField('StartDate',_t('CalendarDateTime.STARTDATE', 'Start date')),
+			$end = new DateField('EndDate',_t('CalendarDateTime.ENDDATE', 'End date')),
+			new TimeField('StartTime', _t('CalendarDateTime.STARTTIME', 'Start time')),
+			new TimeField('EndTime', _t('CalendarDateTime.ENDTIME', 'End time')),
 			new CheckboxField('AllDay', _t('CalendarDateTime.ALLDAY','This event lasts all day'))
-		);
+		));
 
-		$this->extend('updateCMSFields', $f);
+		$start->setConfig('showcalendar', true);
+		$end->setConfig('showcalendar', true);
 
-		return $f;
+		$this->extend('updateCMSFields', $fields);
+		return $fields;
 	}
 
 
