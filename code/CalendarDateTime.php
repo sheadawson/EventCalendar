@@ -37,8 +37,8 @@ class CalendarDateTime extends DataObject
 		$fields->addFieldsToTab('Root.Main', array(
 			$start = new DateField('StartDate',_t('CalendarDateTime.STARTDATE', 'Start date')),
 			$end = new DateField('EndDate',_t('CalendarDateTime.ENDDATE', 'End date')),
-			new TimeField('StartTime', _t('CalendarDateTime.STARTTIME', 'Start time')),
-			new TimeField('EndTime', _t('CalendarDateTime.ENDTIME', 'End time')),
+			new TimePickerField('StartTime', _t('CalendarDateTime.STARTTIME', 'Start time')),
+			new TimePickerField('EndTime', _t('CalendarDateTime.ENDTIME', 'End time')),
 			new CheckboxField('AllDay', _t('CalendarDateTime.ALLDAY','This event lasts all day'))
 		));
 
