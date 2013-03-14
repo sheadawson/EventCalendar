@@ -237,6 +237,8 @@ class CalendarEvent_Controller extends Page_Controller {
 			return $result;			
 		}
 	}
-
-
+	
+	public function MonthJumper() {
+		return $this->Parent()->renderWith('MonthJumper');
+	}
 }
