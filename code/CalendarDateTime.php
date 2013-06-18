@@ -228,7 +228,11 @@ class CalendarDateTime extends DataObject
 
 	public function getAllDatesInRange() {
 		$start = sfDate::getInstance($this->StartDate);
-		$end = sfDate::getInstance($this->EndDate);
+		if($this->EndDate){
+			$end = sfDate::getInstance($this->EndDate);	
+		}else{
+			$end = clone $start;
+		}
 		$dates = array ();
 		while($start->get() <= $end->get()) {
 			$dates[] = $start->format('Y-m-d');
